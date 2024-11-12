@@ -3,9 +3,47 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <title>Login</title>
 </head>
 <body>
-    <h1>LOGIN</h1>
+    <header class="header-container">
+        <h1 class="header-title">
+            CV GENERATOR
+        </h1>
+        <p class="header-description">Crea, edita y exporta tu CV a formato PDF</p>
+    </header>
+
+    <main class="main-container">
+        <p class="main-register-link">
+            ¿No tienes cuenta?, Registrate!
+        </p>
+        <form class="main-login-form">
+            <div class="input-container">
+                <label for="email">
+                    Email
+                </label>
+                <input type="email" name="email" id="email">
+            </div>
+            <div class="input-container">
+                <label for="password">
+                    Contraseña
+                </label>
+                <input type="password" name="password" id="password">
+            </div>
+            <button class="main-button-submit" type="submit">
+                Iniciar sesion
+            </button>
+            <button class="main-button-google">
+                Continuar con Google
+            </button>
+            <button class="main-button-facebook">
+                Continuar con Facebook
+            </button>
+        </form>
+    </main>
 </body>
 </html>
