@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -19,7 +19,7 @@
 
     <main class="main-container">
         <p class="main-register-link">
-            ¿No tienes cuenta?, Registrate!
+            ¿No tienes cuenta? <a th:href="@{/register}"><strong>Registrate!</strong></a>
         </p>
         <form class="main-login-form">
             <div class="input-container">
@@ -37,6 +37,11 @@
             <button class="main-button-submit" type="submit">
                 Iniciar sesion
             </button>
+            <div class="main-div-container">
+                <hr>
+                <p>o</p>
+                <hr>
+            </div>
             <button class="main-button-google">
                 Continuar con Google
             </button>

@@ -1,15 +1,19 @@
 * {
     margin: 0;
-    paddin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: "Roboto", "sans-serif";
 }
 
 :root {
-    --text-light: #898686
+    --text-light: #898686;
+    --input-light: #D9D9D9;
+    --google-text: #1D93E8;
+    --facebook-button: #314882;
 }
 
 .header-container {
-    margin: 40px auto 40px auto;
+    margin: 40px auto 80px auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -24,22 +28,91 @@
 
 .header-description {
     color: var(--text-light);
-    font-weight: 100;
+    font-weight: 0;
+    font-size: 20px;
 }
 
 .main-container {
-    margin: 100px;
+    width: 30dvw;
+    margin: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.main-register-link {
+    text-align: start;
+    align-self: flex-start;
+    margin-bottom: 30px;
 }
 
 .main-login-form {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 35px;
+}
+
+.main-container button {
+    width: 100%;
+    padding: 17px;
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.main-button-submit {
+    background: black;
+    color: white;
+    border: none;
+}
+
+.main-button-google {
+    border: 2px solid var(--input-light);
+    color: var(--google-text);
+}
+
+.main-button-facebook {
+    background: var(--facebook-button);
+    color: white;
+    border: none;
+}
+
+.input-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
     gap: 10px;
 }
 
+.input-container input {
+    width: inherit;
+    padding: 12px;
+    border: 2px solid var(--input-light);
+    outline: none;
+}
+
+.input-container label {
+    color: var(--text-light);
+}
+
+
+.main-div-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.main-div-container hr {
+    width: 35%;
+}
