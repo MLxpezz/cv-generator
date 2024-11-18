@@ -66,12 +66,19 @@ a {
     padding: 17px;
     font-size: 16px;
     font-weight: 800;
+    cursor: pointer;
 }
 
 .main-button-submit {
     background: black;
     color: white;
     border: none;
+}
+
+.main-button-submit:hover {
+    background: white;
+    color: black;
+    border: 1px solid black;
 }
 
 .main-button-google {
@@ -115,4 +122,8 @@ a {
 
 .main-div-container hr {
     width: 35%;
+}
+
+.message-error {
+    color: red;
 }

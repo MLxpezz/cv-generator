@@ -40,4 +40,9 @@ public class UserEntity {
 
     @Column(name = "created_at", columnDefinition = "DATE")
     private LocalDate createdAt;
+
+    @PrePersist
+    private void createdDateBeforePersist() {
+        createdAt = LocalDate.now();
+    }
 }
