@@ -2,6 +2,7 @@ package com.cv_generator.controller;
 
 import com.cv_generator.model.dto.LoginRequestDTO;
 import com.cv_generator.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/auth")
 public class AuthController {
 
     private final UserService userService;
@@ -24,18 +25,18 @@ public class AuthController {
         return new LoginRequestDTO("", "");
     }
 
-    @GetMapping("login")
+    @GetMapping("/login")
     public String login() {
         return "Login";
     }
 
-    @GetMapping("register")
+    @GetMapping("/register")
     public String register(@ModelAttribute("loginRequest") LoginRequestDTO loginRequest) {
         return "Register";
     }
 
-    @PostMapping("register")
-    public String registerPost(@ModelAttribute("loginRequest") LoginRequestDTO loginRequest, BindingResult bindingResult) {
+    @PostMapping("/register")
+    public String registerPost(@Valid @ModelAttribute("loginRequest") LoginRequestDTO loginRequest, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return "Register";
@@ -46,6 +47,6 @@ public class AuthController {
 
         userService.newUser(loginRequest);
 
-        return "redirect:/login";
+        return "redirect:/auth/login";
     }
 }
