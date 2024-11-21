@@ -1,9 +1,11 @@
 package com.cv_generator.controller;
 
+import com.cv_generator.excepcions.EmailAlreadyExistsExcepcion;
 import com.cv_generator.model.dto.LoginRequestDTO;
 import com.cv_generator.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -36,16 +38,18 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public String registerPost(@Valid @ModelAttribute("loginRequest") LoginRequestDTO loginRequest, BindingResult bindingResult) {
+    public String registerPost(@Valid @ModelAttribute("loginRequest") LoginRequestDTO loginRequest, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             return "Register";
         }
 
-        System.out.println("email: " + loginRequest.getEmail());
-        System.out.println("password: " + loginRequest.getPassword());
-
-        userService.newUser(loginRequest);
+        try {
+            userService.newUser(loginRequest);
+        }catch (EmailAlreadyExistsExcepcion excepcion) {
+            model.addAttribute("errorMessage", excepcion.getMessage());
+            return "Register";
+        }
 
         return "redirect:/auth/login";
     }

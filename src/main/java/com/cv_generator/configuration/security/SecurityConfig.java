@@ -1,5 +1,7 @@
 package com.cv_generator.configuration.security;
 
+import com.cv_generator.configuration.security.filters.JwtAuthorizationFilter;
+import com.cv_generator.utils.jwt.JwtUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,10 +19,17 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
+    private final JwtUtils jwtUtils;
+
+    public SecurityConfig(JwtUtils jwtUtils) {
+        this.jwtUtils = jwtUtils;
+    }
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -43,6 +52,7 @@ public class SecurityConfig {
                     form.permitAll();
                 })
                 .logout(LogoutConfigurer::permitAll)
+                .addFilterBefore(new JwtAuthorizationFilter(jwtUtils), UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 

@@ -24,6 +24,9 @@
         <form class="main-login-form"
               method="post"
             th:action="@{/auth/login}">
+            <p th:if="${param.error}" class="message-error">
+                Email o contraseña incorrectos
+            </p>
             <div class="input-container">
                 <label for="email">
                     Email
@@ -39,9 +42,6 @@
             <button class="main-button-submit" type="submit">
                 Iniciar sesion
             </button>
-            <p th:if="${param.error}" class="message-error">
-                Email o contraseña incorrectos
-            </p>
             <div class="main-div-container">
                 <hr>
                 <p>o</p>
