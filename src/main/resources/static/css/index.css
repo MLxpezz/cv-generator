@@ -126,4 +126,5 @@ a {
 
 .message-error {
     color: red;
+    align-self: flex-start;
 }

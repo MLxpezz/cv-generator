@@ -19,10 +19,10 @@
 
 <main class="main-container">
     <p class="main-register-link">
-        ¿Ya tienes cuenta? <a th:href="@{/login}"><strong>Inicia sesion!</strong></a>
+        ¿Ya tienes cuenta? <a th:href="@{/auth/login}"><strong>Inicia sesion!</strong></a>
     </p>
     <form class="main-login-form"
-        th:action="@{/register}"
+        th:action="@{/auth/register}"
         method="post"
         th:object="${loginRequest}">
         <div class="input-container">

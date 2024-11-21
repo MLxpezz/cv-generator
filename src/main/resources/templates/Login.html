@@ -19,24 +19,29 @@
 
     <main class="main-container">
         <p class="main-register-link">
-            ¿No tienes cuenta? <a th:href="@{/register}"><strong>Registrate!</strong></a>
+            ¿No tienes cuenta? <a th:href="@{/auth/register}"><strong>Registrate!</strong></a>
         </p>
-        <form class="main-login-form">
+        <form class="main-login-form"
+              method="post"
+            th:action="@{/auth/login}">
             <div class="input-container">
                 <label for="email">
                     Email
                 </label>
-                <input type="email" name="email" id="email">
+                <input type="email" name="username" id="email" required>
             </div>
             <div class="input-container">
                 <label for="password">
                     Contraseña
                 </label>
-                <input type="password" name="password" id="password">
+                <input type="password" name="password" id="password" required>
             </div>
             <button class="main-button-submit" type="submit">
                 Iniciar sesion
             </button>
+            <p th:if="${param.error}" class="message-error">
+                Email o contraseña incorrectos
+            </p>
             <div class="main-div-container">
                 <hr>
                 <p>o</p>
