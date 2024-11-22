@@ -26,9 +26,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     private final JwtUtils jwtUtils;
+    private final UserDetailsService userDetailsService;
 
-    public SecurityConfig(JwtUtils jwtUtils) {
+    public SecurityConfig(JwtUtils jwtUtils, UserDetailsService userDetailsService) {
         this.jwtUtils = jwtUtils;
+        this.userDetailsService = userDetailsService;
     }
 
     @Bean
@@ -39,20 +41,9 @@ public class SecurityConfig {
                     request.requestMatchers("/auth/register", "/auth/login", "/css/index.css", "/home").permitAll();
                     request.anyRequest().authenticated();
                 })
-                .sessionManagement(session -> {
-                    session.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-                    session.maximumSessions(1);
-                    session.sessionFixation(SessionManagementConfigurer.SessionFixationConfigurer::migrateSession);
-                })
                 .httpBasic(Customizer.withDefaults())
-                .formLogin(form -> {
-                    form.loginPage("/auth/login");
-                    form.loginProcessingUrl("/auth/login");
-                    form.defaultSuccessUrl("/home", true);
-                    form.permitAll();
-                })
-                .logout(LogoutConfigurer::permitAll)
-                .addFilterBefore(new JwtAuthorizationFilter(jwtUtils), UsernamePasswordAuthenticationFilter.class)
+                .formLogin(AbstractHttpConfigurer::disable)
+                .addFilterBefore(new JwtAuthorizationFilter(jwtUtils, userDetailsService), UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 

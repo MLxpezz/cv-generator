@@ -3,10 +3,15 @@ package com.cv_generator.configuration.security.filters;
 import com.cv_generator.utils.jwt.JwtUtils;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -16,33 +21,43 @@ import java.io.IOException;
 public class JwtAuthorizationFilter extends OncePerRequestFilter {
 
     private final JwtUtils jwtUtils;
+    private final UserDetailsService userDetailsService;
 
-    public JwtAuthorizationFilter(JwtUtils jwtUtils) {
+    public JwtAuthorizationFilter(JwtUtils jwtUtils, UserDetailsService userDetailsService) {
         this.jwtUtils = jwtUtils;
+        this.userDetailsService = userDetailsService;
     }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
-        //obtengo el token de la peticion
-        String tokenFromRequest = request.getHeader("Authorization");
+        String token = null;
 
-        //valido que contenga el prefijo Bearer y no venga vacio
-        if (tokenFromRequest != null && tokenFromRequest.startsWith("Bearer ")) {
-            //quito el prefijo Bearer al token para trabajar con el
-            String token = tokenFromRequest.substring(7);
+        Cookie[] cookies = request.getCookies();
 
-            //Valido el token
-            if (jwtUtils.isTokenValid(token)) {
-                //obtengo el email del token
+        if (cookies != null) {
+            System.out.println("SI HAY COOKIES");
+            for(Cookie cookie : cookies) {
+                if(cookie.getName().equals("token")) {
+                    token = cookie.getValue();
+                    System.out.println("el token fue encontrado en las cookies: " + token);
+                }
+            }
+        }
+
+        if (token != null && jwtUtils.isTokenValid(token)) {
+            try {
                 String email = jwtUtils.getEmailFromToken(token);
-
-                //creo un objeto de autenticacion para pasarlo al contexto de seguridad y autorizarlo
-                UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(email, null, null);
-                SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+                UserDetails userDetails = userDetailsService.loadUserByUsername(email);
+                Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+                System.out.println("usuario autorizado con exito: " + email);
+            }catch (UsernameNotFoundException exception) {
+                System.out.println("Usuario no existe");
             }
         }
 
         filterChain.doFilter(request, response);
     }
+
 }
