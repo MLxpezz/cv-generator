@@ -1,10 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" th:href="@{/css/home.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <title>Inicio</title>
 </head>
 <body>
-    <h1>HOME</h1>
+    <header class="header-container">
+        <h1 class="header-title">
+            CV GENERATOR
+        </h1>
+    </header>
+    <nav class="nav-container">
+        <ul class="nav-link-container">
+            <li class="nav-link">
+                <div class="nav-link_text-container">
+                    <a class="nav-link_text" th:href="@{/home}">
+                        Inicio
+                    </a>
+                </div>
+                <div class="nav-img-container">
+                    <img th:src="@{/images/home.png}" alt="home">
+                </div>
+            </li>
+            <li class="nav-link">
+                <div class="nav-link_text-container">
+                    <a class="nav-link_text">
+                        Mis plantillas
+                    </a>
+                </div>
+                <div class="nav-img-container">
+                    <img th:src="@{/images/save.png}" alt="home">
+                </div>
+            </li>
+            <li class="nav-link">
+                <div class="nav-link_text-container">
+                    <a class="nav-link_text">
+                        Mi cuenta
+                    </a>
+                </div>
+                <div class="nav-img-container">
+                    <img th:src="@{/images/account.png}" alt="home">
+                </div>
+            </li>
+            <li class="nav-link">
+                <div class="nav-link_text-container">
+                    <a class="nav-link_text">
+                        Cerrar sesion
+                    </a>
+                </div>
+                <div class="nav-img-container">
+                    <img th:src="@{/images/logout.png}" alt="home">
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="main-container">
+        <section class="main-layouts-container">
+
+        </section>
+    </main>
 </body>
 </html>
