@@ -29,7 +29,7 @@
 .nav-container {
     background-color: white;
     width: 60dvw;
-    height: 40px;
+    height: 35px;
     border: 3px solid var(--input-light);
     border-radius: 15px;
     margin: auto;
@@ -50,7 +50,7 @@
 }
 
 .nav-img-container {
-    padding: 12px;
+    padding: 8px;
     border-radius: 50%;
     border: 2px solid black;
     display: flex;
@@ -58,18 +58,18 @@
     justify-content: center;
     background: white;
     z-index: 100;
-    transform: translateY(-13px);
+    transform: translateY(-10px);
     transition: all 0.3s ease-in;
     cursor: pointer;
 }
 
 .nav-link:hover .nav-img-container {
-    transform: translateY(40px);
+    transform: translateY(35px);
 }
 
 .nav-link:hover .nav-link_text-container {
     height: 110%;
-    padding: 10px;
+    z-index: 100;
 }
 
 .nav-img-container img {
@@ -78,15 +78,20 @@
 }
 
 .nav-link_text-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transform: translateY(-2px);
     height: 0;
     position: absolute;
     width: max-content;
     background: black;
+    border-radius: 15px;
     color: white;
     cursor: pointer;
-    display: flex;
+    padding: 10px;
     font-size: 16px;
+    z-index: -100;
     transition: all 0.3s ease-in-out;
 }
 

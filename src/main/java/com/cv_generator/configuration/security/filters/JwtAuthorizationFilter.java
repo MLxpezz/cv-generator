@@ -23,7 +23,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
     private final JwtUtils jwtUtils;
     private final UserDetailsService userDetailsService;
 
-    public JwtAuthorizationFilter(JwtUtils jwtUtils, UserDetailsService userDetailsService) {
+    public JwtAuthorizationFilter(JwtUtils jwtUtils,UserDetailsService userDetailsService) {
         this.jwtUtils = jwtUtils;
         this.userDetailsService = userDetailsService;
     }
@@ -36,7 +36,6 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
         Cookie[] cookies = request.getCookies();
 
         if (cookies != null) {
-            System.out.println("SI HAY COOKIES");
             for(Cookie cookie : cookies) {
                 if(cookie.getName().equals("token")) {
                     token = cookie.getValue();

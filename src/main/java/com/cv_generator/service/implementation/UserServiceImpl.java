@@ -42,4 +42,9 @@ public class UserServiceImpl implements UserService {
     public UserDTO getUserById(Long id) {
         return null;
     }
+
+    @Override
+    public boolean existsUser(String email) {
+        return userRepository.existsByEmail(email);
+    }
 }
