@@ -5,11 +5,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/home")
+@RequestMapping("/")
 public class DashBoardController {
 
-    @GetMapping
+    @GetMapping("home")
     public String home() {
         return "Home";
+    }
+
+    @GetMapping("savedTemplates")
+    public String savedTemplates() {
+        return "SavedTemplates";
+    }
+
+    @GetMapping("/newTemplate")
+    public String newTemplate() {
+        return "NewTemplate";
     }
 }

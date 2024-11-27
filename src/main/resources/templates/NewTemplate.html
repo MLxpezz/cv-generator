@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" th:href="@{/css/newTemplate.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <title>Mis plantillas</title>
+</head>
+    <body>
+        <nav class="nav-container">
+            <ul class="nav-link-container">
+                <li class="nav-link">
+                    <div class="nav-link_text-container">
+                        <p class="nav-link_text" >
+                            Inicio
+                        </p>
+                    </div>
+                    <div class="nav-img-container">
+                        <a th:href="@{/home}">
+                            <img th:src="@{/images/home.png}" alt="home">
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-link">
+                    <div class="nav-link_text-container">
+                        <p class="nav-link_text">
+                            Mis plantillas
+                        </p>
+                    </div>
+                    <div class="nav-img-container">
+                        <a >
+                            <img th:src="@{/images/save.png}" alt="home">
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-link">
+                    <a th:href="@{/home}">
+                        CV GENERATOR
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <div class="nav-link_text-container">
+                        <p class="nav-link_text">
+                            Mi cuenta
+                        </p>
+                    </div>
+                    <div class="nav-img-container">
+                        <a >
+                            <img th:src="@{/images/account.png}" alt="home">
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-link">
+                    <div class="nav-link_text-container">
+                        <p class="nav-link_text" th:href="@{/auth/logout}">
+                            Cerrar sesion
+                        </p>
+                    </div>
+                    <div class="nav-img-container">
+                        <a th:href="@{/auth/logout}">
+                            <img th:src="@{/images/logout.png}" alt="home">
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+
+        <main class="main-container">
+            <section class="main-tools-container">
+                <div class="tools_draw-container">
+                    <p class="draw-title">Herramientas</p>
+                    <div class="draw-container">
+                        <div class="draw-item">
+                            <img th:src="@{/images/text.png}" alt="text">
+                        </div>
+                        <div class="draw-item">
+                            <img th:src="@{/images/square.png}" alt="square">
+                        </div>
+                        <div class="draw-item">
+                            <img th:src="@{/images/line.png}" alt="line">
+                        </div>
+                    </div>
+                </div>
+                <div class="tools_colors-container">
+                    <p class="colors-title">Colores</p>
+                    <div class="color">
+                        <input type="color">
+                    </div>
+                </div>
+                <div class="tools_image-container">
+                    <p class="image-title">Imagenes</p>
+                    <div class="image-container">
+                        <img th:src="@{/images/image.png}" alt="image">
+                    </div>
+                    <div class="image-upload-container">
+                        <div class="image-upload-item"></div>
+                        <div class="image-upload-item"></div>
+                        <div class="image-upload-item"></div>
+                        <div class="image-upload-item"></div>
+                    </div>
+                </div>
+            </section>
+            <section class="main-template-container">
+
+            </section>
+            <section class="main-button-container">
+                <button class="save-button">Guardar</button>
+                <button class="pdf-button">Generar PDF</button>
+            </section>
+        </main>
+    </body>
+</html>
