@@ -41,8 +41,6 @@ public class AuthServiceImpl implements AuthService {
 
             response.addCookie(cookie);
 
-            System.out.println("token generado y puesto en las cookies: " + token);
-            System.out.println("cookie: " + cookie.getName() + " y valor: " + cookie.getValue());
         }catch (AuthenticationException exception) {
             throw new BadCredentialsException("Las credenciales son incorrectas");
         }

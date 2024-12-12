@@ -31,7 +31,7 @@
                         </p>
                     </div>
                     <div class="nav-img-container">
-                        <a >
+                        <a th:href="@{/savedTemplates}">
                             <img th:src="@{/images/save.png}" alt="home">
                         </a>
                     </div>
@@ -73,13 +73,13 @@
                 <div class="tools_draw-container">
                     <p class="draw-title">Herramientas</p>
                     <div class="draw-container">
-                        <div class="draw-item">
+                        <div class="draw-item text">
                             <img th:src="@{/images/text.png}" alt="text">
                         </div>
-                        <div class="draw-item">
+                        <div class="draw-item square">
                             <img th:src="@{/images/square.png}" alt="square">
                         </div>
-                        <div class="draw-item">
+                        <div class="draw-item image">
                             <img th:src="@{/images/line.png}" alt="line">
                         </div>
                     </div>
@@ -92,24 +92,20 @@
                 </div>
                 <div class="tools_image-container">
                     <p class="image-title">Imagenes</p>
-                    <div class="image-container">
-                        <img th:src="@{/images/image.png}" alt="image">
-                    </div>
                     <div class="image-upload-container">
-                        <div class="image-upload-item"></div>
-                        <div class="image-upload-item"></div>
-                        <div class="image-upload-item"></div>
-                        <div class="image-upload-item"></div>
                     </div>
+                    <button class="image-button">Subir imagen</button>
+                    <input type="file" id="fileInput" accept="image/*" style="display: none;" />
                 </div>
             </section>
-            <section class="main-template-container">
-
-            </section>
+            <section th:replace="~{fragments/cv-template-fragment :: template-fragment}"></section>
             <section class="main-button-container">
                 <button class="save-button">Guardar</button>
-                <button class="pdf-button">Generar PDF</button>
+                <button class="pdf-button">
+                    Generar PDF
+                </button>
             </section>
         </main>
     </body>
+    <script th:src="@{/js/index.js}"></script>
 </html>
