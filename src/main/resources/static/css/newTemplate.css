@@ -1,0 +1,245 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('static/fonts/Roboto-Regular.ttf') format('truetype');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", "sans-serif";
+}
+
+:root {
+    --text-light: #898686;
+    --input-light: #D9D9D9;
+    --save-button: #027A02;
+    --pdf-button: #000000;
+}
+
+.nav-container {
+    background-color: black;
+    width: 100dvw;
+    margin: 0 0 50px 0;
+    padding: 10px;
+}
+
+.nav-link-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    list-style: none;
+}
+
+.nav-link {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+}
+
+.nav-link a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.nav-img-container {
+    padding: 8px;
+    border-radius: 40%;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    transition: all 0.3s ease-in;
+    cursor: pointer;
+    position: relative;
+}
+
+.nav-link:hover .nav-link_text-container {
+    transform: translate(80%, 6px) scaleX(1);
+}
+
+.nav-img-container img {
+    width: 30px;
+    object-fit: cover;
+}
+
+.nav-img-container a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-link_text-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translate(80%, 6px) scaleX(0);
+    transform-origin: left;
+    width: max-content;
+    position: absolute;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    color: black;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 16px;
+    transition: all 0.3s ease-out;
+}
+
+.nav-link_text {
+    text-decoration: none;
+    color: black;
+}
+
+.main-container {
+    width: 60dvw;
+    margin: auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+}
+
+.tools_draw-container, .tools_colors-container, .tools_image-container, .main-tools-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 15px;
+}
+
+.draw-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.draw-item {
+    padding: 3px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.draw-item img {
+    width: 30px;
+    object-fit: cover;
+}
+
+
+.main-tools-container p {
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.image-upload-container {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    border: 1px dashed black;
+    padding: 20px;
+    overflow: auto;
+    width: 300px;
+    height: 450px;
+}
+
+.image-upload-item {
+    object-fit: cover;
+    width: 100%;
+
+}
+
+.image-button {
+    padding: 15px;
+    color: white;
+    background: dodgerblue;
+    font-size: 16px;
+    font-weight: 800;
+    border: none;
+    cursor: pointer;
+}
+
+.image-container {
+    width: max-content;
+    height: max-content;
+    padding: 2px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.image-container img {
+    object-fit: cover;
+    width: 30px;
+    height: 30px;
+}
+
+.main-template-container {
+    width: 612px;
+    height: 792px;
+    border: 1px solid black;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.main-template-container > img {
+    position: absolute;
+    object-fit: cover;
+    width: 20%;
+    cursor: pointer;
+    margin: auto;
+}
+
+.main-button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.main-button-container button {
+    padding: 8px;
+    color: white;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.save-button {
+    width: 8rem;
+    background: var(--save-button);
+}
+
+.save-button:hover {
+    outline: 2px solid var(--save-button);
+    background: white;
+    color: var(--save-button);
+    font-weight: 700;
+}
+
+.pdf-button {
+    width: 10rem;
+    background: var(--pdf-button);
+}
+
+.pdf-button a {
+    text-decoration: none;
+    color: white;
+}
+
+.pdf-button:hover {
+    outline: 2px solid var(--pdf-button);
+    color: var(--pdf-button);
+    background: white;
+    font-weight: 700;
+}
+
+.pdf-button:hover a {
+    color: black;
+}

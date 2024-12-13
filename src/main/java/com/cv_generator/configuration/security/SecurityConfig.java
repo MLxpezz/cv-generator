@@ -18,7 +18,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -37,7 +36,7 @@ public class SecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> {
-                    request.requestMatchers("/auth/register", "/auth/login", "/css/**", "/home").permitAll();
+                    request.requestMatchers("/auth/register", "/auth/login", "/css/**", "/home", "/fonts/**", "/pdf/generate").permitAll();
                     request.anyRequest().authenticated();
                 })
                 .httpBasic(Customizer.withDefaults())
@@ -47,6 +46,10 @@ public class SecurityConfig {
                 .exceptionHandling(entryPoint -> entryPoint.authenticationEntryPoint((request, response, authException) -> {
                     response.sendRedirect("/auth/login");
                 }))
+                .oauth2Login(oauth -> {
+                    oauth.loginPage("/auth/login");
+                    oauth.defaultSuccessUrl("/home", true);
+                })
                 .build();
     }
 

@@ -4,8 +4,8 @@ import com.cv_generator.model.dto.LoginRequestDTO;
 import com.cv_generator.service.AuthService;
 import com.cv_generator.utils.jwt.JwtUtils;
 import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -41,15 +41,23 @@ public class AuthServiceImpl implements AuthService {
 
             response.addCookie(cookie);
 
-            System.out.println("token generado y puesto en las cookies: " + token);
-            System.out.println("cookie: " + cookie.getName() + " y valor: " + cookie.getValue());
         }catch (AuthenticationException exception) {
             throw new BadCredentialsException("Las credenciales son incorrectas");
         }
     }
 
     @Override
-    public void userLogout() {
+    public void userLogout(HttpServletRequest request, HttpServletResponse response) {
+        Cookie[] cookies = request.getCookies();
 
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("token")) {
+                    cookie.setMaxAge(0);
+                    cookie.setPath("/");
+                    response.addCookie(cookie);
+                }
+            }
+        }
     }
 }
