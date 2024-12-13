@@ -1,11 +1,11 @@
 package com.cv_generator.service.implementation;
 
+import com.cv_generator.excepcions.EmailAlreadyExistsExcepcion;
 import com.cv_generator.model.dto.LoginRequestDTO;
 import com.cv_generator.model.dto.UserDTO;
-import com.cv_generator.model.entities.UserEntity;
 import com.cv_generator.repository.UserRepository;
 import com.cv_generator.service.UserService;
-import com.cv_generator.utils.UserMapper;
+import com.cv_generator.utils.mappers.UserMapper;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,6 +22,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void newUser(LoginRequestDTO loginRequestDTO) {
+        if(userRepository.findByEmail(loginRequestDTO.getEmail()).isPresent()) {
+            throw new EmailAlreadyExistsExcepcion("El correo ya existe");
+        }
         userRepository.save(userMapper.requestToEntity(loginRequestDTO));
     }
 
@@ -38,5 +41,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO getUserById(Long id) {
         return null;
+    }
+
+    @Override
+    public boolean existsUser(String email) {
+        return userRepository.existsByEmail(email);
     }
 }

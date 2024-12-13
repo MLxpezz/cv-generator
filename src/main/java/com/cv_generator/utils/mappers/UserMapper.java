@@ -1,7 +1,6 @@
-package com.cv_generator.utils;
+package com.cv_generator.utils.mappers;
 
 import com.cv_generator.model.dto.LoginRequestDTO;
-import com.cv_generator.model.dto.UserDTO;
 import com.cv_generator.model.entities.UserEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;

@@ -12,4 +12,6 @@ public interface UserService {
     void deleteUser(Long id);
 
     UserDTO getUserById(Long id);
+
+    boolean existsUser(String email);
 }

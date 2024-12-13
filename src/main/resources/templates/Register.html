@@ -25,6 +25,7 @@
         th:action="@{/auth/register}"
         method="post"
         th:object="${loginRequest}">
+        <p class="message-error" th:if="${errorMessage}" th:text="${errorMessage}"></p>
         <div class="input-container">
             <label for="email">
                 Email*
