@@ -1,9 +1,9 @@
 package com.cv_generator.controller;
 
-import com.cv_generator.service.implementation.PdfGeneratorService;
+import com.cv_generator.service.PdfGeneratorService;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,10 +23,12 @@ public class PdfController {
         this.pdfGeneratorService = pdfGeneratorService;
     }
 
-    @PostMapping("/generate")
-    public void generatePdf(@RequestBody Map<String, String> htmlRequest, HttpServletResponse response, Model model) {
+    @PostMapping(value = "/generate", produces = MediaType.APPLICATION_PDF_VALUE)
+    public void generatePdf(@RequestBody Map<String, String> htmlRequest, HttpServletResponse response) {
+
+        String html = htmlRequest.get("html");
+
         try {
-            String html = htmlRequest.get("html");
             byte[] pdf = pdfGeneratorService.generatePdf(html);
 
             response.setContentType("application/pdf");

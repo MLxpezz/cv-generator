@@ -109,9 +109,6 @@ const mouseMove = (event) => {
 
     draggableElement.style.top = (draggableElement.offsetTop - newY) + "px";
     draggableElement.style.left = (draggableElement.offsetLeft - newX) + "px";
-
-    console.log(startX, startY)
-    console.log(draggableElement.style.left, draggableElement.style.top)
 }
 
 const mouseUp = () => {
@@ -120,12 +117,23 @@ const mouseUp = () => {
     document.removeEventListener("mouseup", mouseUp);
 }
 
-pdfButton.addEventListener("click", event => {
-    fetch("/pdf/generate", {
-        method: 'POST',
+pdfButton.addEventListener("click", async (event) => {
+    const response = await fetch("/pdf/generate", {
+        method: "POST",
         headers: {
-            'Content-type': 'application/json'
+            "Content-type": "application/json"
         },
         body: JSON.stringify({html: cvContainer.outerHTML})
-    })
+    });
+
+    if (response.ok) {
+        const blob = await response.blob();
+        const link = document.createElement("a");
+        link.href = window.URL.createObjectURL(blob);
+        link.download = "cv.pdf";
+        link.click();
+        link.remove();
+    } else {
+        console.error("Error al generar el PDF:", response.statusText);
+    }
 })

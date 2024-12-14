@@ -189,7 +189,7 @@
 .main-template-container > img {
     position: absolute;
     object-fit: cover;
-    width: 20%;
+    width: 200px;
     cursor: pointer;
     margin: auto;
 }

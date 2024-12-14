@@ -57,7 +57,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
                 String email = jwtUtils.getEmailFromToken(token);
                 UserDetails userDetails = userDetailsService.loadUserByUsername(email);
                 Authentication authentication2 = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-                SecurityContextHolder.getContext().setAuthentication(authentication);
+                SecurityContextHolder.getContext().setAuthentication(authentication2);
                 System.out.println("usuario autorizado con exito: " + email);
             }catch (UsernameNotFoundException exception) {
                 System.out.println("Usuario no existe");
