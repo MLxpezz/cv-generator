@@ -36,20 +36,17 @@ public class SecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> {
-                    request.requestMatchers("/auth/register", "/auth/login", "/css/**", "/home", "/fonts/**", "/pdf/generate").permitAll();
+                    request.requestMatchers("/auth/register", "/auth/login", "/css/**", "/fonts/**").permitAll();
                     request.anyRequest().authenticated();
                 })
                 .httpBasic(Customizer.withDefaults())
                 .formLogin(AbstractHttpConfigurer::disable)
+                //.addFilterBefore(new TokenValidatorFilter(jwtUtils, userDetailsService), JwtAuthorizationFilter.class)
                 .addFilterBefore(new JwtAuthorizationFilter(jwtUtils, userDetailsService), UsernamePasswordAuthenticationFilter.class)
-                .addFilterBefore(new TokenValidatorFilter(jwtUtils, userDetailsService), JwtAuthorizationFilter.class)
-                .exceptionHandling(entryPoint -> entryPoint.authenticationEntryPoint((request, response, authException) -> {
-                    response.sendRedirect("/auth/login");
-                }))
-                .oauth2Login(oauth -> {
+                /*.oauth2Login(oauth -> {
                     oauth.loginPage("/auth/login");
                     oauth.defaultSuccessUrl("/home", true);
-                })
+                })*/
                 .build();
     }
 

@@ -119,13 +119,3 @@ const mouseUp = () => {
     cvContainer.removeEventListener("mousemove", mouseMove);
     document.removeEventListener("mouseup", mouseUp);
 }
-
-pdfButton.addEventListener("click", event => {
-    fetch("/pdf/generate", {
-        method: 'POST',
-        headers: {
-            'Content-type': 'application/json'
-        },
-        body: JSON.stringify({html: cvContainer.outerHTML})
-    })
-})

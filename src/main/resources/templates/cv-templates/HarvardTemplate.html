@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" th:href="@{/css/newTemplate.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <title>Inicio</title>
+</head>
+    <body>
+    <nav class="nav-container">
+        <ul class="nav-link-container">
+            <li class="nav-link">
+                <div class="nav-link_text-container">
+                    <p class="nav-link_text" >
+                        Inicio
+                    </p>
+                </div>
+                <div class="nav-img-container">
+                    <a th:href="@{/home}">
+                        <img th:src="@{/images/home.png}" alt="home">
+                    </a>
+                </div>
+            </li>
+            <li class="nav-link">
+                <div class="nav-link_text-container">
+                    <p class="nav-link_text">
+                        Mis plantillas
+                    </p>
+                </div>
+                <div class="nav-img-container">
+                    <a th:href="@{/savedTemplates}">
+                        <img th:src="@{/images/save.png}" alt="home">
+                    </a>
+                </div>
+            </li>
+            <li class="nav-link">
+                <a th:href="@{/home}">
+                    CV GENERATOR
+                </a>
+            </li>
+            <li class="nav-link">
+                <div class="nav-link_text-container">
+                    <p class="nav-link_text">
+                        Mi cuenta
+                    </p>
+                </div>
+                <div class="nav-img-container">
+                    <a >
+                        <img th:src="@{/images/account.png}" alt="home">
+                    </a>
+                </div>
+            </li>
+            <li class="nav-link">
+                <div class="nav-link_text-container">
+                    <p class="nav-link_text" th:href="@{/auth/logout}">
+                        Cerrar sesion
+                    </p>
+                </div>
+                <div class="nav-img-container">
+                    <a th:href="@{/auth/logout}">
+                        <img th:src="@{/images/logout.png}" alt="home">
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="main-container">
+        <section class="main-template-container">
+            <h1 class="template-name">Nombre</h1>
+            <ul class="template-contact-list">
+                <li class="contact-list_item">ciudad, pais</li>
+                <li class="contact-list_item">linkedin</li>
+                <li class="contact-list_item">telefono</li>
+                <li class="contact-list_item">correo</li>
+            </ul>
+            <hr>
+            <div class="template-presentation">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                A assumenda atque autem deserunt dolore eaque error et ex explicabo fugiat natus non odit,
+                pariatur, placeat qui quia, quis rerum soluta.
+            </div>
+        </section>
+    </main>
+
+    </body>
+</html>

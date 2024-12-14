@@ -20,6 +20,6 @@ public class DashBoardController {
 
     @GetMapping("/newTemplate")
     public String newTemplate() {
-        return "NewTemplate";
+        return "cv-templates/HarvardTemplate";
     }
 }
